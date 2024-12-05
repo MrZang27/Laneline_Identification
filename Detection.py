@@ -27,7 +27,7 @@ def region_selection(edges):
     bottom_right = [cols * 0.9, rows * 0.9]
     top_right = [cols * 0.6, rows * 0.4]
 
-    # 原ROI区域的四个顶点
+    # #原ROI区域的四个顶点
     # bottom_left = [cols * 0.1, rows * 0.95]
     # top_left	 = [cols * 0.4, rows * 0.6]
     # bottom_right = [cols * 0.9, rows * 0.95]
@@ -38,8 +38,14 @@ def region_selection(edges):
     # 填充ROI区域
     cv2.fillPoly(mask, vertices, ignore_mask_color)
 
+    # cv2.imshow('mask',mask)
+    # cv2.waitKey(0)
+
     # 返回ROI区域
     masked_edges = cv2.bitwise_and(edges, mask)
+
+    # cv2.imshow('masked_edges',masked_edges)
+    # cv2.waitKey(0)
 
     if masked_edges is None:
         print("ROI区域选择失败")

@@ -12,23 +12,27 @@ def frame_processor(image):
     '''
     # 转换为灰度图像
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cv2.imshow('gray',gray)
+    cv2.waitKey(0)
 
     # 高斯模糊处理
     kernel_size = 5
     blur = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
+    cv2.imshow('blur',blur)
+    cv2.waitKey(0)
 
     # 边缘检测
     low_threshold = 50
     high_threshold = 150
     edges = cv2.Canny(blur, low_threshold, high_threshold)
-    # cv2.imshow('edges',edges)
-    # cv2.waitKey(0)
+    cv2.imshow('edges',edges)
+    cv2.waitKey(0)
 
     # 选择ROI区域
     region = region_selection(edges)
     #print(type(region))
-    # cv2.imshow('region',region)
-    # cv2.waitKey(0)
+    cv2.imshow('region',region)
+    cv2.waitKey(0)
 
     # 霍夫变换检测直线
     hough = hough_transform(region)
